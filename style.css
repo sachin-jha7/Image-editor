@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100dvh;
+    width: 100vw;
+    background-color: black;
+    color: #fff;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+    width: 100%;
+
+}
+
+main section {
+    width: 60%;
+    display: flex;
+    /* background-color: #222; */
+    margin: auto;
+    /* border: 1px solid rgb(252, 170, 170); */
+    padding: 20px;
+    gap: 20px;
+}
+
+main section .left {
+    width: 100%;
+    height: 590px;
+    /* background-color: #121212; */
+    /* border: 1px solid crimson; */
+    /* gap: 20px; */
+    border-radius: 10px;
+}
+
+.left .upper {
+    width: 430px;
+    height: 70px;
+    /* border: 1px solid gray; */
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: auto;
+    border-radius: 10px;
+}
+
+.left .lower {
+    /* width: 85%; */
+    width: 430px;
+    /* padding: 10px 4px 10px 4px; */
+    /* border: 1px solid gray; */
+    background-color: #121212;
+    margin: 10px auto 0px auto;
+    height: 510px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.btn {
+    padding: 7px 17px;
+    background-color: transparent;
+    border: none;
+    background-color: rgb(8, 114, 114);
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+#reset-btn {
+    background-color: rgb(216, 68, 68);
+}
+
+#download-btn {
+    background-color: limegreen;
+}
+
+
+main section .right {
+    /* width: 50%; */
+    width: 450px;
+    /* border: 1px solid greenyellow; */
+    /* background-color: #222; */
+    background-color: #121212;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+
+.right .filter-box {
+    width: 100%;
+    height: 50px;
+    /* border: 1px solid gray; */
+    margin-top: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right .filter-box:hover {
+    box-shadow: 0px 0px 16px lime;
+}
+
+.right input {
+    background-color: transparent;
+    margin-top: 5px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* for Mozilla Firefox */
+
+.right .filter-box input::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: limegreen;
+    border: none;
+}
+
+.right .filter-box input::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+
+/* for Chrome, Safari, edge */
+
+.right .filter-box input::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    background-color: gray;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.right .filter-box input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: limegreen;
+    border: none;
+    margin-top: -4.5px;
+}
+
+canvas {
+    height: 100%;
+    width: 100%;
+}
+
+
+.btn-container {
+    display: none;
+}
+
+.right .filter-container {
+    display: none;
+}
+
+.right .filter-container .filter-sm-box input::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 5px;
+    background-color: gray;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.right .filter-container .filter-sm-box input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: limegreen;
+    border: none;
+    margin-top: -4.5px;
+}
+
+.right .filter-container .filter-sm-box input::-moz-range-thumb {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: limegreen;
+    border: none;
+}
+
+.right .filter-container .filter-sm-box input::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    background-color: gray;
+    border-radius: 5px;
+}
+
+@media (max-width: 430px) {
+    main {
+        width: 100%;
+    }
+
+    main section {
+        width: 100%;
+        flex-wrap: wrap;
+        padding: 0;
+        gap: 5px;
+    }
+
+    main section .left {
+        width: 100%;
+    }
+
+    .left .upper {
+        width: 98vw;
+        margin-top: 10px;
+    }
+
+    .left .lower {
+        width: 98vw;
+        margin-top: 10px;
+        height: 495px;
+    }
+
+    main section .right {
+        width: 94vw;
+        height: 135px;
+        padding: 10px;
+        overflow-y: auto;
+        /* border: 1px solid goldenrod; */
+    }
+
+    .right h2 {
+        display: none;
+    }
+
+    .right .filter-box {
+        display: none;
+    }
+
+    .btn-container {
+        display: block;
+        display: flex;
+        /* flex-wrap: wrap; */
+        overflow-x: auto;
+        gap: 10px;
+        margin-top: 10px;
+        /* display: none; */
+    }
+
+    .btn-container button {
+        padding: 9px 16px;
+        background-color: transparent;
+        border: none;
+        border-radius: 100px;
+        color: white;
+    }
+
+    .right .filter-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* display: none; */
+    }
+    .right .filter-container .tic-untic {
+        height: fit-content;
+        width: 90vw;
+        display: flex;
+        justify-content: space-between;
+        display: none;
+    }
+    .tic-untic button {
+        border: none;
+        background: transparent;
+    }
+    .filter-container .filter-sm-box {
+        /* border: 1px solid red; */
+        height: 70px;
+        width: 85vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .filter-sm-box p {
+        margin-bottom: 20px;
+    }
+    .filter-sm-box div {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Editor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <section>
+            <div class="left">
+                <div class="upper">
+                    <label for="img-inp" class="btn">Upload Image</label>
+                    <input type="file" name="image" accept="image/*" id="img-inp" hidden>
+                    <button class="btn" id="reset-btn">Reset</button>
+                    <button class="btn" id="download-btn">Download</button>
+                </div>
+                <div class="lower">
+                    <!-- <div class="container"> -->
+                    <div class="placeholder">
+                        No image choosen
+                    </div>
+                    <canvas id="img-box"></canvas>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="right">
+                <h2>Filters</h2>
+                <div class="btn-container">
+                    <button id="brightness" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="white">
+                            <path
+                                d="M480-28 346-160H160v-186L28-480l132-134v-186h186l134-132 134 132h186v186l132 134-132 134v186H614L480-28Zm0-252q83 0 141.5-58.5T680-480q0-83-58.5-141.5T480-680v400Zm0 140 100-100h140v-140l100-100-100-100v-140H580L480-820 380-720H240v140L140-480l100 100v140h140l100 100Zm0-340Z" />
+                        </svg>
+                        Brightness
+                    </button>
+                    <button id="contrast" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-80q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm-.13-66.67q139.46 0 236.46-96.87 97-96.88 97-236.46 0-66.67-25.16-127.5Q763-668.33 716-715.33L244.67-244.67q46.83 46.92 107.71 72.46 60.89 25.54 127.49 25.54ZM486-319.33v-53.34h197.33v53.34H486ZM322.67-500H376v-84.67h85.33V-638H376v-84.67h-53.33V-638H238v53.33h84.67V-500Z" />
+                        </svg>
+                        Contrast
+                    </button>
+                    <button id="saturation" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-84.33 32.17-157.33 32.16-73 87.66-127t129.84-84.84Q404-880 488.67-880 568-880 639-853.17q71 26.84 124.5 74.34t85 112.66Q880-601 880-524q0 110.33-65.33 172.5-65.34 62.17-168 62.17H572q-15 0-24.83 11-9.84 11-9.84 24.33 0 22 14.67 42.17 14.67 20.16 14.67 46.5 0 42-23.17 63.66Q520.33-80 480-80Zm0-400Zm-228.67 30.67q22 0 37.67-15.67 15.67-15.67 15.67-37.67T289-540.33Q273.33-556 251.33-556t-37.66 15.67Q198-524.67 198-502.67q0 22 15.67 37.67 15.66 15.67 37.66 15.67Zm124-166.67q22 0 37.67-15.67 15.67-15.66 15.67-37.66 0-22-15.67-37.67-15.67-15.67-37.67-15.67T337.67-707Q322-691.33 322-669.33t15.67 37.66Q353.33-616 375.33-616Zm209.34 0q22 0 37.66-15.67Q638-647.33 638-669.33q0-22-15.67-37.67-15.66-15.67-37.66-15.67-22 0-37.67 15.67-15.67 15.67-15.67 37.67T547-631.67Q562.67-616 584.67-616ZM712-449.33q22 0 37.67-15.67 15.66-15.67 15.66-37.67t-15.66-37.66Q734-556 712-556t-37.67 15.67q-15.66 15.66-15.66 37.66 0 22 15.66 37.67Q690-449.33 712-449.33ZM480-146.67q10.33 0 15.17-4.66 4.83-4.67 4.83-14 0-14-14.67-28.34Q470.67-208 470.67-248q0-44.67 29.66-76.33Q530-356 574.67-356h72q72.66 0 119.66-42.5t47-125.5q0-128.33-97.5-208.83t-227.16-80.5q-142.67 0-242.34 96.66Q146.67-620 146.67-480q0 138.33 97.5 235.83T480-146.67Z" />
+                        </svg>
+                        Saturation
+                    </button>
+                    <button id="hueRotation" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M600-80q-51 0-85.5-34.5T480-200q0-26 10.5-48.5T520-288v-112q0-33 23.5-56.5T600-480q33 0 56.5 23.5T680-400v112q18 17 29 39.5t11 48.5q0 51-35 85.5T600-80Zm-60-120h120q0-23-12.5-35.5T620-262v-138q0-8-6-14t-14-6q-8 0-14 6t-6 14v138q-16 14-28 26.5T540-200Zm180-100v-60h120v60H720Zm0-100v-60h160v60H720Zm111-160h-83q-26-88-99-144t-169-56q-117 0-198.5 81.5T200-480q0 72 32.5 132t87.5 98v-110h80v240H160v-80h94q-62-50-98-122.5T120-480q0-75 28.5-140.5t77-114q48.5-48.5 114-77T480-840q129 0 226.5 79.5T831-560Z" />
+                        </svg>
+                        hueRotation
+                    </button>
+                    <button id="blur" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M120-380q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm0-160q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm120 340q-17 0-28.5-11.5T200-240q0-17 11.5-28.5T240-280q17 0 28.5 11.5T280-240q0 17-11.5 28.5T240-200Zm0-160q-17 0-28.5-11.5T200-400q0-17 11.5-28.5T240-440q17 0 28.5 11.5T280-400q0 17-11.5 28.5T240-360Zm0-160q-17 0-28.5-11.5T200-560q0-17 11.5-28.5T240-600q17 0 28.5 11.5T280-560q0 17-11.5 28.5T240-520Zm0-160q-17 0-28.5-11.5T200-720q0-17 11.5-28.5T240-760q17 0 28.5 11.5T280-720q0 17-11.5 28.5T240-680Zm160 340q-25 0-42.5-17.5T340-400q0-25 17.5-42.5T400-460q25 0 42.5 17.5T460-400q0 25-17.5 42.5T400-340Zm0-160q-25 0-42.5-17.5T340-560q0-25 17.5-42.5T400-620q25 0 42.5 17.5T460-560q0 25-17.5 42.5T400-500Zm0 300q-17 0-28.5-11.5T360-240q0-17 11.5-28.5T400-280q17 0 28.5 11.5T440-240q0 17-11.5 28.5T400-200Zm0-480q-17 0-28.5-11.5T360-720q0-17 11.5-28.5T400-760q17 0 28.5 11.5T440-720q0 17-11.5 28.5T400-680Zm0 580q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm0-720q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm160 480q-25 0-42.5-17.5T500-400q0-25 17.5-42.5T560-460q25 0 42.5 17.5T620-400q0 25-17.5 42.5T560-340Zm0-160q-25 0-42.5-17.5T500-560q0-25 17.5-42.5T560-620q25 0 42.5 17.5T620-560q0 25-17.5 42.5T560-500Zm0 300q-17 0-28.5-11.5T520-240q0-17 11.5-28.5T560-280q17 0 28.5 11.5T600-240q0 17-11.5 28.5T560-200Zm0-480q-17 0-28.5-11.5T520-720q0-17 11.5-28.5T560-760q17 0 28.5 11.5T600-720q0 17-11.5 28.5T560-680Zm0 580q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm0-720q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm160 620q-17 0-28.5-11.5T680-240q0-17 11.5-28.5T720-280q17 0 28.5 11.5T760-240q0 17-11.5 28.5T720-200Zm0-160q-17 0-28.5-11.5T680-400q0-17 11.5-28.5T720-440q17 0 28.5 11.5T760-400q0 17-11.5 28.5T720-360Zm0-160q-17 0-28.5-11.5T680-560q0-17 11.5-28.5T720-600q17 0 28.5 11.5T760-560q0 17-11.5 28.5T720-520Zm0-160q-17 0-28.5-11.5T680-720q0-17 11.5-28.5T720-760q17 0 28.5 11.5T760-720q0 17-11.5 28.5T720-680Zm120 300q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Zm0-160q-8 0-14-6t-6-14q0-8 6-14t14-6q8 0 14 6t6 14q0 8-6 14t-14 6Z" />
+                        </svg>
+                        Blur
+                    </button>
+                    <button id="grayscale" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-260q75 0 127.5-52.5T660-440q0-75-52.5-127.5T480-620q-75 0-127.5 52.5T300-440q0 75 52.5 127.5T480-260Zm0-80q-42 0-71-29t-29-71q0-42 29-71t71-29q42 0 71 29t29 71q0 42-29 71t-71 29ZM160-120q-33 0-56.5-23.5T80-200v-480q0-33 23.5-56.5T160-760h126l74-80h240l74 80h126q33 0 56.5 23.5T880-680v480q0 33-23.5 56.5T800-120H160Zm320-80h320v-480H638l-73-80h-85v560Z" />
+                        </svg>
+                        Grayscale
+                    </button>
+                    <button id="sepia" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M482-80q-57 0-101-36t-55-92q-53 17-107-2t-83-66q-30-48-22-106.5t52-97.5q-42-38-50.5-94T134-678q27-48 81.5-69.5T324-752q11-56 55-92t101-36q57 0 101 36t55 92q56-17 108.5 3t81.5 71q27 50 19.5 104.5T794-480q44 39 52.5 96.5T828-276q-29 51-81.5 68T638-208q-11 56-55 92T482-80Zm0-80q47 0 70.5-40.5T552-280l-28-46q-11 3-21 4.5t-21 1.5q-10 0-20.5-1.5T440-326l-28 46q-24 39-.5 79.5T482-160ZM202-320q24 41 70.5 41t69.5-41l26-46q-8-8-15-17t-12-19q-5-9-9-18.5t-7-19.5h-53q-47 0-70 39.5t0 80.5Zm416 0q23 41 69.5 41t70.5-41q23-41 0-80.5T688-440h-53q-2 10-6.5 19.5T619-402q-5 10-12 19t-15 17l26 46ZM480-480Zm-155-40q3-11 7.5-21.5T342-561q5-9 11.5-17t14.5-16l-26-46q-23-41-69.5-41T202-640q-23 41 0 80.5t70 39.5h53Zm363 0q47 0 70-39.5t0-80.5q-24-41-70.5-41T618-640l-26 46q8 8 14.5 16t11.5 17q5 9 9.5 19.5T635-520h53ZM437-634q11-3 21.5-4.5T480-640q11 0 21.5 1.5T523-634l27-46q23-39 0-79.5T480-800q-47 0-70 40t0 80l27 46Zm0 0q11-3 21.5-4.5T480-640q11 0 21.5 1.5T523-634q-11-3-21.5-4.5T480-640q-11 0-21.5 1.5T437-634Zm-96 232q-5-9-9-18.5t-7-19.5q3 10 7 19.5t9 18.5q5 10 12 19t15 17q-8-8-15-17t-12-19Zm-16-118q3-11 7.5-21.5T342-561q5-9 11.5-17t14.5-16q-8 8-14.5 16T342-561q-5 9-9.5 19.5T325-520Zm157 200q-10 0-20.5-1.5T440-326q11 3 21.5 4.5T482-320q11 0 21-1.5t21-4.5q-11 3-21 4.5t-21 1.5Zm110-46q8-8 15-17t12-19q5-9 9.5-18.5T635-440q-2 10-6.5 19.5T619-402q-5 10-12 19t-15 17Zm43-154q-3-11-7.5-21.5T618-561q-5-9-11.5-17T592-594q8 8 14.5 16t11.5 17q5 9 9.5 19.5T635-520ZM480-400q33 0 56.5-23.5T560-480q0-33-23.5-56.5T480-560q-33 0-56.5 23.5T400-480q0 33 23.5 56.5T480-400Z" />
+                        </svg>
+                        Sepia
+                    </button>
+                    <button id="opacity" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-120q-133 0-226.5-92T160-436q0-65 25-121.5T254-658l226-222 226 222q44 44 69 100.5T800-436q0 132-93.5 224T480-120ZM242-400h474q12-72-13.5-123T650-600L480-768 310-600q-27 26-53 77t-15 123Z" />
+                        </svg>
+                        Opacity
+                    </button>
+                    <button id="invert" class="filter-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 -960 960 960" width="35px"
+                            fill="#FFFFFF">
+                            <path
+                                d="M480-120q-133 0-226.5-92.5T160-436q0-66 25-122t69-100l226-222 226 222q44 44 69 100t25 122q0 131-93.5 223.5T480-120Zm0-80v-568L310-600q-35 33-52.5 74.5T240-436q0 97 70 166.5T480-200Z" />
+                        </svg>
+                        Invert
+                    </button>
+                </div>
+                <div id="bright" class="filter-box">
+                    <p>Brightness</p>
+                    <input type="range" name="brightness" value="100" min="0" max="200">
+                </div>
+                <div class="filter-box">
+                    <p>Contrast</p>
+                    <input type="range" name="contrast" value="100" min="0" max="200">
+                </div>
+                <div class="filter-box">
+                    <p>Saturation</p>
+                    <input type="range" name="saturation" value="100" min="0" max="200">
+                </div>
+                <div class="filter-box">
+                    <p>hueRotation</p>
+                    <input type="range" name="hueRotation" value="0" min="0" max="360">
+                </div>
+                <div class="filter-box">
+                    <p>Blur</p>
+                    <input type="range" name="blur" value="0" min="0" max="20">
+                </div>
+                <div class="filter-box">
+                    <p>Grayscale</p>
+                    <input type="range" name="grayscale" value="0" min="0" max="100">
+                </div>
+                <div class="filter-box">
+                    <p>Sepia</p>
+                    <input type="range" name="sepia" value="0" min="0" max="100">
+                </div>
+                <div class="filter-box">
+                    <p>Opacity</p>
+                    <input type="range" name="opacity" value="100" min="0" max="100">
+                </div>
+                <div class="filter-box">
+                    <p>Invert</p>
+                    <input type="range" name="invert" value="0" min="0" max="100">
+                </div>
+
+                <div class="filter-container">
+                    <div class="tic-untic">
+                        <div>
+                            <button class="untic-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                                    width="30px" fill="#FFFFFF">
+                                    <path
+                                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div>
+                            <button class="tic-btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                                    width="30px" fill="gray">
+                                    <path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z" />
+                                </svg>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Brightness</p>
+                            <p id="bright-text">200/100</p>
+                        </div>
+                        <input type="range" name="brightness" value="100" min="0" max="200">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Contrast</p>
+                            <p id="contrast-text">200/100</p>
+                        </div>
+                        <input type="range" name="contrast" value="100" min="0" max="200">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Saturation</p>
+                            <p id="saturate-text">200/100</p>
+                        </div>
+                        <input type="range" name="saturation" value="100" min="0" max="200">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>hueRotation</p>
+                            <p id="hue-text">360/0</p>
+                        </div>
+                        <input type="range" name="hueRotation" value="0" min="0" max="360">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Blur</p>
+                            <p id="blur-text">20/0</p>
+                        </div>
+                        <input type="range" name="blur" value="0" min="0" max="20">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Grayscale</p>
+                            <p id="gray-text">100/0</p>
+                        </div>
+                        <input type="range" name="grayscale" value="0" min="0" max="100">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Sepia</p>
+                            <p id="sepia-text">100/0</p>
+                        </div>
+                        <input type="range" name="sepia" value="0" min="0" max="100">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Opacity</p>
+                            <p id="opacity-text">100/100</p>
+                        </div>
+                        <input type="range" name="opacity" value="100" min="0" max="100">
+                    </div>
+                    <div class="filter-sm-box">
+                        <div class="text-box">
+                            <p>Invert</p>
+                            <p id="invert-text">100/0</p>
+                        </div>
+                        <input type="range" name="invert" value="0" min="0" max="100">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+
+</html>
