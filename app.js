@@ -36,7 +36,7 @@ inp.addEventListener("change", (event) => {
 
     
     // console.log("image input held");
-    canvas.style.display = "block";
+    canvas.style.display = "flex";
     placeholderText.style.display = "none";
 
     file = event.target.files[0];
