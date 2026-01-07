@@ -34,10 +34,8 @@ let firstUpload = false;
 
 inp.addEventListener("change", (event) => {
 
-    // if(firstUpload) {
-    //     location.reload();
-    // }
-    console.log("image input held");
+    
+    // console.log("image input held");
     canvas.style.display = "block";
     placeholderText.style.display = "none";
 
@@ -66,6 +64,9 @@ inp.addEventListener("change", (event) => {
 let brightValue = 100; let contrastValue = 100; let saturateValue = 100; let hueRotateValue = 0;
 let blurValue = 0; let grayscaleValue = 0; let sepiaValue = 0; let opacityValue = 100; let invertValue = 0;
 
+let isInBright = false; let isInContra = false; let isInSaturate = false; let isInHue = false; let isInBlur = false;
+let isInGray = false; isInSepia = false; let isInOpacity = false; let isInInvert = false;
+
 let brightText = document.getElementById("bright-text");
 let contrastText = document.getElementById("contrast-text");
 let saturateText = document.getElementById("saturate-text");
@@ -82,6 +83,8 @@ let tic_color = document.querySelector(".tic-btn svg");
 
 let allInp = document.querySelectorAll(".right input");
 
+let inputArray = Array.from(allInp);
+
 
 for (let btn of allInp) {
     btn.addEventListener("input", (event) => {
@@ -94,38 +97,47 @@ for (let btn of allInp) {
             if (event.target.name == "brightness") {
                 brightValue = event.target.value;
                 brightText.innerText = `200/${brightValue}`;
+                isInBright = true;
             }
             if (event.target.name == "contrast") {
                 contrastValue = event.target.value;
                 contrastText.innerText = `200/${contrastValue}`;
+                isInContra = true;
             }
             if (event.target.name == "saturation") {
                 saturateValue = event.target.value;
                 saturateText.innerText = `200/${saturateValue}`;
+                isInSaturate = true;
             }
             if (event.target.name == "hueRotation") {
                 hueRotateValue = event.target.value;
                 hueText.innerText = `360/${hueRotateValue}`;
+                isInHue = true;
             }
             if (event.target.name == "blur") {
                 blurValue = event.target.value;
                 blurText.innerText = `20/${blurValue}`;
+                isInBlur = true;
             }
             if (event.target.name == "grayscale") {
                 grayscaleValue = event.target.value;
                 grayText.innerText = `100/${grayscaleValue}`;
+                isInGray = true;
             }
             if (event.target.name == "sepia") {
                 sepiaValue = event.target.value;
                 sepiaText.innerText = `100/${sepiaValue}`;
+                isInSepia = true;
             }
             if (event.target.name == "opacity") {
                 opacityValue = event.target.value;
                 opacityText.innerText = `100/${opacityValue}`;
+                isInOpacity = true;
             }
             if (event.target.name == "invert") {
                 invertValue = event.target.value;
                 invertText.innerText = `100/${invertValue}`;
+                isInInvert = true;
             }
 
             ctx.filter = `
@@ -172,46 +184,55 @@ resetBtn.addEventListener("click", () => {
                 btn.value = 100;
                 applyFilter("brightness", 100, "%");
                 brightText.innerText = "200/100";
+                brightValue = 100;
             }
             if (btn.name == "contrast") {
                 btn.value = 100;
                 applyFilter("contrast", 100, "%");
                 contrastText.innerText = "200/100";
+                contrastValue = 100;
             }
             if (btn.name == "saturation") {
                 btn.value = 100;
                 applyFilter("saturate", 100, "%");
                 saturateText.innerText = "200/100";
+                saturateValue = 100;
             }
             if (btn.name == "hueRotation") {
                 btn.value = 0;
                 applyFilter("hue-rotate", 0, "deg");
                 hueText.innerText = "360/0";
+                hueRotateValue = 0;
             }
             if (btn.name == "blur") {
                 btn.value = 0;
                 applyFilter("blur", 0, "px");
                 blurText.innerText = "20/0";
+                blurValue = 0;
             }
             if (btn.name == "grayscale") {
                 btn.value = 0;
                 applyFilter("grayscale", 0, "%");
                 grayText.innerText = "100/0";
+                grayscaleValue = 0;
             }
             if (btn.name == "sepia") {
                 btn.value = 0;
                 applyFilter("sepia", 0, "%");
                 sepiaText.innerText = "100/0";
+                sepiaValue = 0;
             }
             if (btn.name == "opacity") {
                 btn.value = 100;
                 applyFilter("opacity", 100, "%");
                 opacityText.innerText = "100/100";
+                opacityValue = 100;
             }
             if (btn.name == "invert") {
                 btn.value = 0;
                 applyFilter("invert", 0, "%");
                 opacityText.innerText = "100/0";
+                invertValue = 0;
             }
         }
     }
@@ -252,6 +273,69 @@ unticBtn.addEventListener("click", () => {
     removeFilterInputs();
     btnContainer.style.display = "flex";
     tic_untic_container.style.display = "none";
+    if (isInBright) {
+        applyFilter("brightness", 100, "%");
+        brightText.innerText = "200/100";
+        inputArray[9].value = 100;
+        isInBright = false;
+        brightValue = 100;
+    }
+    if (isInContra) {
+        applyFilter("contrast", 100, "%");
+        contrastText.innerText = "200/100";
+        inputArray[10].value = 100;
+        isInContra = false;
+        contrastValue = 100;
+    }
+    if (isInSaturate) {
+        applyFilter("saturate", 100, "%");
+        saturateText.innerText = "200/100";
+        inputArray[11].value = 100;
+        isInSaturate = false;
+        saturateValue = 100;
+    }
+    if (isInHue) {
+        applyFilter("hue-rotate", 0, "deg");
+        hueText.innerText = "360/0";
+        inputArray[12].value = 0;
+        isInHue = false;
+        hueRotateValue = 0;
+    }
+    if (isInBlur) {
+        applyFilter("blur", 0, "px");
+        blurText.innerText = "20/0";
+        inputArray[13].value = 0;
+        isInBlur = false;
+        blurValue = 0;
+    }
+    if (isInGray) {
+        applyFilter("grayscale", 0, "%");
+        grayText.innerText = "100/0";
+        inputArray[14].value = 0;
+        isInGray = false;
+        grayscaleValue = 0;
+    }
+    if (isInSepia) {
+        applyFilter("sepia", 0, "%");
+        sepiaText.innerText = "100/0";
+        inputArray[15].value = 0;
+        isInSepia = false;
+        sepiaValue = 0;
+    }
+    if (isInOpacity) {
+        applyFilter("opacity", 100, "%");
+        opacityText.innerText = "100/100";
+        inputArray[16].value = 100;
+        isInOpacity = false;
+        opacityValue = 100;
+    }
+    if (isInInvert) {
+        applyFilter("invert", 0, "%");
+        opacityText.innerText = "100/0";
+        inputArray[17].value = 0;
+        isInInvert = false;
+        invertValue = 0;
+    }
 });
 
 let inputContainer = document.querySelector(".filter-box");
