@@ -359,10 +359,16 @@ let allBtn = document.querySelectorAll(".btn-container .filter-btn");
 for (let btn of allBtn) {
     btn.addEventListener("click", () => {
 
+        let r = Math.floor(Math.random() * 255) + 1;
+        let g = Math.floor(Math.random() * 255) + 1;
+        let b = Math.floor(Math.random() * 255) + 1;
+
+        let color = `rgb(${r},${g},${b})`;
+
         for (let BTN of allBtn) {
             BTN.style.boxShadow = "0px 0px 0px slateblue";
         }
-        btn.style.boxShadow = "0px 0px 16px dodgerblue";
+        btn.style.boxShadow = `0px 0px 16px ${color}`;
 
         let id = btn.getAttribute("id");
 
