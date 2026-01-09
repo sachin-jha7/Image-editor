@@ -98,46 +98,118 @@ for (let btn of allInp) {
                 brightValue = event.target.value;
                 brightText.innerText = `200/${brightValue}`;
                 isInBright = true;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "contrast") {
                 contrastValue = event.target.value;
                 contrastText.innerText = `200/${contrastValue}`;
                 isInContra = true;
+                isInBright = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "saturation") {
                 saturateValue = event.target.value;
                 saturateText.innerText = `200/${saturateValue}`;
                 isInSaturate = true;
+                isInBright = false;
+                isInContra = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "hueRotation") {
                 hueRotateValue = event.target.value;
                 hueText.innerText = `360/${hueRotateValue}`;
                 isInHue = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "blur") {
                 blurValue = event.target.value;
                 blurText.innerText = `20/${blurValue}`;
                 isInBlur = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "grayscale") {
                 grayscaleValue = event.target.value;
                 grayText.innerText = `100/${grayscaleValue}`;
                 isInGray = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInSepia = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "sepia") {
                 sepiaValue = event.target.value;
                 sepiaText.innerText = `100/${sepiaValue}`;
                 isInSepia = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInOpacity = false;
+                isInInvert = false;
             }
             if (event.target.name == "opacity") {
                 opacityValue = event.target.value;
                 opacityText.innerText = `100/${opacityValue}`;
                 isInOpacity = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInInvert = false;
             }
             if (event.target.name == "invert") {
                 invertValue = event.target.value;
                 invertText.innerText = `100/${invertValue}`;
                 isInInvert = true;
+                isInBright = false;
+                isInContra = false;
+                isInSaturate = false;
+                isInHue = false;
+                isInBlur = false;
+                isInGray = false;
+                isInSepia = false;
+                isInOpacity = false;
             }
 
             ctx.filter = `
@@ -157,6 +229,7 @@ for (let btn of allInp) {
 
     });
 }
+
 
 
 
