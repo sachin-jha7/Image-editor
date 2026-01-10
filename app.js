@@ -409,6 +409,19 @@ unticBtn.addEventListener("click", () => {
         isInInvert = false;
         invertValue = 0;
     }
+    ctx.filter = `
+            brightness(${brightValue}%)
+            contrast(${contrastValue}%)
+            saturate(${saturateValue}%)
+            hue-rotate(${hueRotateValue}deg)
+            blur(${blurValue}px)
+            grayscale(${grayscaleValue}%)
+            sepia(${sepiaValue}%)
+            opacity(${opacityValue}%)
+            invert(${invertValue}%)
+            `;
+
+    ctx.drawImage(image, x, y, newWidth, newHeight);
 });
 
 let inputContainer = document.querySelector(".filter-box");
